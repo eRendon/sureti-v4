@@ -1,0 +1,8 @@
+<modal-layout :showModal="showNewGuarantee" @onDismissModal="onDismissModal">
+    <component @onRecordGuarantee="onRecordGuarantee"
+               :isFirstGuarantee="false"
+               :isOnBoarding="false"
+               :guarantee_value="Number(valueProperty)"
+               :is="component.isComponent">
+    </component>
+</modal-layout>

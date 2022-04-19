@@ -1,0 +1,42 @@
+<modal-layout :showModal="stateModal.show" @onDismissModal="dismissModal">
+    <div>
+        <h2 class="sureti-modal-title">
+            Solicitar fondos
+        </h2>
+        <div v-if="!guarantee.state">
+            <p>Selecciona la garantía sobre la cual deseas solicitar fondos.</p>
+            <guarantee-list :isToPayment="true"/>
+        </div>
+        <div v-else>
+            <div class="sureti-modal-selected-guarantee">
+                <h3 class="sureti-modal-selected-guarantee-title">
+                    <span class="property-address">{{ guarantee.real_estate_address }}</span><br>
+                    <span class="property-location">{{ guarantee.real_estate_city }}, {{ guarantee.real_estate_country }}</span>
+                </h3>
+                <ul>
+                    <li class="half">
+                        <p class="guarantee-debt-label">Cupo disponible: </p><p class="guarantee-debt-amount"> {{ $filters.formatCurrency(parseInt(guarantee.guarantee_credit_limit) - parseInt(activeLoan.balance)) }}</p>
+                    </li>
+                    <li class="half">
+                        <button v-if="getIdParams" @click="onCancelSelected" class="inverse">
+                            Cambiar garantía
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sureti-modal-transaction-box">
+                <label>Cuánto deseas solicitar?</label>
+                <input id="requestLoan" type="number" v-model="requestLoan.amount">
+                <p>
+                    El mondo debe ser mayor a 0 y menor a {{ Number(guarantee.guarantee_credit_limit) - Number(activeLoan.balance) }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div v-if="guarantee.state">
+        <button @click="createRequest">Aceptar</button>&nbsp;
+        <button @click="dismissModal" class="inverse">Cancel</button>
+    </div>
+</modal-layout>

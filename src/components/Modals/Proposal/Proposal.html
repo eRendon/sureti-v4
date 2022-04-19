@@ -1,0 +1,54 @@
+<modal-layout :showModal="stateProposal.show" @onDismissModal="dismissModal">
+    <div>
+        <h2 class="sureti-modal-title">
+            Propuesta de préstamo
+        </h2>
+        <div class="sureti-modal-selected-guarantee">
+            <ul>
+                <li>
+                    <p class="guarantee-debt-label">Monto:</p>
+                    <p class="guarantee-debt-amount">{{ $filters.formatCurrency(parseInt(stateProposal.proposal.amount)) }}</p>
+                </li>
+                <li class="third">
+                    <p class="guarantee-debt-label">Interés a inversionista:</p>
+                    <p class="guarantee-debt-amount">{{ stateProposal.proposal.return_investment }}%</p>
+                </li>
+                <li class="third">
+                    <p class="guarantee-debt-label">Costos financieros:</p>
+                    <p class="guarantee-debt-amount">{{ stateProposal.proposal.financial_fees }}% (mes)</p>
+                </li>
+                <li class="third">
+                    <p class="guarantee-debt-label">Comisión SURETI:</p>
+                    <p class="guarantee-debt-amount">{{ stateProposal.proposal.commission }}% (mes)</p>
+                </li>
+                <li>
+                    <p>Las tasas son mensuales.</p>
+                </li>
+                <li>
+                    <h4>¿Apruebas nuestra propuesta?</h4>
+                </li>
+                <li class="sureti-proposal-approval-switch">
+                    <label class="switch relative inline-block w-12 h-6">
+                        <input v-model="toUpdate.approve" type="checkbox" checked>
+                        <span class="slider cursor-pointer inset-0 absolute round rounded-full"></span>
+                    </label>
+                    <span id="sureti-proposal-approval-switch-caption">{{ toUpdate.approve ? 'Si, deseo aprobar y continuar el proceso.' : 'No, no la apruebo.'}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sureti-modal-transaction-box">
+            <ul>
+
+            </ul>        
+        </div>
+    </div>
+    <!--footer-->
+    <div class="p-3  mt-2 text-center space-x-4 md:block">
+        <button @click="dismissModal" class="inverse">
+            Cancelar
+        </button>
+        <button @click="updateProposal">
+            Enviar respuesta
+        </button>
+    </div>
+</modal-layout>

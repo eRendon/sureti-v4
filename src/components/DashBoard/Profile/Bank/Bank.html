@@ -1,0 +1,83 @@
+<div>
+    <div class="sureti-sensitive-update-code" v-if="isToUpdate">
+        <h2>Ingrese el código</h2>
+        <p>Hemos enviado un código de verificación a su email y/o whatsapp. Por favor ingrese el código aquí para validar los cambios.</p>
+        <div>
+            <input v-model="sensitiveData.temporal_code" type="text" placeholder="Código temporal">
+        </div>
+        <button  @click="updateSensitiveInformation">Actualizar informacion</button>&nbsp;
+        <button  @click="getCode">Reenviar codigo</button>
+    </div>
+    <div v-else>
+        <h2>Información bancaria</h2>
+        <ul :id="'movements-' + index" :key="'bank-movements' + index" v-for="(dataBank, index) in sensitiveData.bank_account_information">
+           <li class="third">
+            <label>
+                Banco:
+                <input placeholder="Banco"
+                   :id="'bank-' + index"
+                   type="text"
+                   v-model="dataBank.bank">
+            </label>
+           </li>
+           <li class="third">
+            <label>
+                Número de cuenta
+                <input placeholder="Número"
+                    type="text"
+                    :id="'bank_account_number-' + index"
+                    v-model="sensitiveData.bank_account_information[index].bank_account_number">
+            </label>
+           </li>
+           <li class="third">
+            <label>
+                Tipo de cuenta:
+                <select v-model="sensitiveData.bank_account_information[index].bank_account_type" name="gender" id="account_type">
+                    <option disabled :value="undefined">Seleccione una opción</option>
+                    <option value="ahorros">Ahorros</option>
+                    <option value="corriente">Corriente</option>
+                    <option value="otra">Otra</option>
+                </select>
+            </label>
+           </li>
+           <li class="third">
+            <label>
+                Titular de la cuenta:
+                <input placeholder="Titular de la cuenta"
+                    type="text"
+                    :id="'bank_account_holder-' + index"
+                    v-model="sensitiveData.bank_account_information[index].bank_account_holder">
+            </label>
+           </li>
+           <li class="third">
+            <label>
+                Tipo de documento (titular):
+                <select v-model="sensitiveData.bank_account_information[index].bank_account_holder_identification_type" name="gender" id="identification_type">
+                    <option disabled :value="undefined">Seleccione una opción</option>
+                    <option value="cedula_ciudadania">Cédula de ciudadanía</option>
+                    <option value="cedula_extranjeria">Cédula de extranjería</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="nit">NIT</option>
+                </select>
+            </label>
+           </li>
+           <li class="third">
+            <label>
+                Número de documento:
+                <input placeholder="Número de documento"
+                    type="text"
+                    :id="'bank_account_holder-' + index"
+                    v-model="sensitiveData.bank_account_information[index].bank_account_holder_identification">
+            </label>
+           </li>
+           <li>
+                <button @click="onDeleteBank(index)">
+                Eliminar
+                </button>
+           </li>
+        </ul>
+        <br>
+        <button @click="onAddBank">Agregar +</button>&nbsp;
+        <button @click="getCode">Enviar / Guardar</button>
+    </div>
+</div>

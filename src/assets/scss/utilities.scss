@@ -1,0 +1,139 @@
+@import "../scss/variables.scss";
+@import '../scss/mixins.scss';
+
+/*------------------------------------*\
+  #COLOR CLASSES
+\*------------------------------------*/
+
+.su_purple {
+  color: $su-purple-100; //Base color
+  &_bg {
+    //append to classname to use for background color
+    background-color: $su-purple-100;
+  }
+
+  &_20 {
+    //append to classname shade of color
+    color: $su-purple-20;
+    &_bg {
+      background-color: $su-purple-20;
+    }
+  }
+
+  &_60 {
+    color: $su-purple-60;
+    &_bg {
+      background-color: $su-purple-60;
+    }
+  }
+
+  &_80 {
+    color: $su-purple-80;
+    &_bg {
+      background-color: $su-purple-80;
+    }
+  }
+
+  &_120 {
+    color: $su-purple-120;
+    &_bg {
+      background-color: $su-purple-120;
+    }
+  }
+  &_140 {
+    color: $su_purple_140;
+    &_bg {
+      background-color: $su-purple-140;
+    }
+  }
+}
+
+/*------------------------------------*\
+  #GRADIENT CLASSES
+\*------------------------------------*/
+
+.su_purple_gradient {
+  background: linear-gradient(93.4deg, #514ac6 17.29%, #9792dd 88.06%);
+}
+
+.su_yellow_gradient {
+  background: linear-gradient(96.58deg, #FFE102 18.91%, #FFF39A 82.25%);
+}
+
+/*------------------------------------*\
+  #FONT WEIGHT CLASSES
+\*------------------------------------*/
+
+.su_wgt {
+  &_light {
+    font-weight: $su_wgt_light;
+  }
+  &_regular {
+    font-weight: $su_wgt_regular;
+  }
+  &_bold {
+    font-weight: $su_wgt_bold;
+  }
+}
+
+/*------------------------------------*\
+  #MARGIN CLASSES
+\*------------------------------------*/
+
+.su_margin {
+  &_btm_6 {
+    margin: 0 0 6px 0 !important;
+  }
+  &_btm_3 {
+    margin: 0 0 3px 0 !important;
+  }
+}
+
+.su_no_margin {
+  margin: 0 !important;
+}
+
+/*------------------------------------*\
+  #FLEX CLASSES
+\*------------------------------------*/
+
+.su_flex {
+  display: flex;
+}
+
+.su_flex_col {
+  display: flex;
+  flex-direction: column;
+}
+
+.su_flex_ai_center {
+  align-items: center;
+}
+
+.su_flex_jc_center{
+  justify-content: center;
+}
+
+.su_flex_jc_sb {
+  justify-content: space-between;
+}
+ 
+
+/*------------------------------------*\
+  #COMPONENT CLASSES
+\*------------------------------------*/
+
+.guarantee-summary-indicators-box {
+  margin-bottom: 12px;  
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(132, 132, 132, 0.46),
+    0px 0px 16px rgba(132, 132, 132, 0.1);
+  text-align: center;
+  width: 100%;
+  @include for-phone-only {
+    padding: 1rem 0;
+  }
+}

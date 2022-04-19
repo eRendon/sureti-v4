@@ -1,0 +1,53 @@
+<modal-layout :showModal="statePayments.show" @onDismissModal="onDismissModal">
+    <div>
+        <h2 class="sureti-modal-title">
+            {{ statePayments.title }}
+        </h2>
+        <div v-if="!selectedGuarantee.state">
+            <p>Selecciona la garantía sobre la que deseas hacer el pago</p>
+            <guarantee-list :isToPayment="true"/>
+        </div>
+        <div v-else>
+            <div class="sureti-modal-selected-guarantee">
+                <h3 class="sureti-modal-selected-guarantee-title">
+                    <span class="property-address">{{ selectedGuarantee.real_estate_address }}</span><br>
+                    <span class="property-location">{{ selectedGuarantee.real_estate_city }}, {{ selectedGuarantee.real_estate_country }}</span>
+                </h3>
+                <ul>
+                    <li class="half">
+                        <p class="guarantee-debt-label">{{ statePayments.isCapitalPayment ? 'Capital en deuda' : 'Intereses Pendientes'}}:</p><p class="guarantee-debt-amount"> {{$filters.formatCurrency(statePayments.isCapitalPayment ? parseInt(totalCapitalDebt) : parseInt(totalInterestDebt))}}</p>
+                    </li>
+                    <li class="half">
+                        <button v-if="!guarantee_id_params" @click="onCancelSelected" class="inverse">
+                            Cambiar garantía
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sureti-modal-transaction-box">
+                <label>Cuanto consignaste? ({{$filters.formatCurrency(payment.amount)}})</label>
+                <input :disabled="confirmSend" type="number" v-model="payment.amount">
+                <label>Fecha de consignación:</label>
+                <input :disabled="confirmSend"  type="date" v-model="payment.pay_out_date">
+                <label>Comprobante de la transaccion:</label>
+                <input :disabled="confirmSend"  type="file" @change="onSelectFile($event.target.files)">
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div>
+        <button :disabled="onValidatePayment" v-if="!confirmSend && selectedGuarantee.state" @click="confirmSend = true">
+            Enviar pago
+        </button>
+        <div v-if="confirmSend">
+            <h2>Es correcta la informacion?</h2>
+            <button @click="onCreatePayment">
+                Si
+            </button>
+            <button @click="confirmSend = false" class="inverse">
+                No
+            </button>
+        </div>
+    </div>
+</modal-layout>

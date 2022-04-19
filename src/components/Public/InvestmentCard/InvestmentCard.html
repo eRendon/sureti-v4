@@ -1,0 +1,50 @@
+<div class="su_investment_opportunity_card_container ">
+  <div class="su_investment_opportunity_card_top" :style="{ 'background-image': 'url(' + publicGuarantee.guarantee_thumbnail + ')' }">
+    <div class="su_investment_oppportunity_avaluo">
+      <h6>Ávaluo</h6>
+      <h4 class="su_purple_120">{{formatAmount(publicGuarantee.guarantee_value)}}</h4>
+      <p class="su_purple_60">millones</p>
+    </div>
+  </div>
+  <div class="su_investment_opportunity_card_bottom">
+    <div class="su_investment_opportunity_title">
+      <h2 class="su_purple">Apartamento en <br />{{publicGuarantee.real_estate_neighborhood}}</h2>
+      <p class="su_purple_60">{{ publicGuarantee.real_estate_city }}, {{publicGuarantee.real_estate_province}}</p>
+    </div>
+    <div class="su_loan-funded">
+      <div class="su_complete-bar">
+        <div class="su_funded-bar" :style="'width:' + barFilled() + '%'"></div>
+      </div>
+      <div class="su_bar-info">
+        <h3 class="su_purple_140">
+          {{
+          formatCurrency(publicGuarantee.amount_committed) }} <span class="su_purple_60"> de </span>
+          {{ formatCurrency(publicGuarantee.amount_requested)
+          }}
+        </h3>
+        <div class="su_divisor-horizontal su_purple_20_bg"></div>
+        <div class="su_investors-active">
+          <h3>{{publicGuarantee.number_investors}}</h3>
+          <p>inversores participando</p>
+        </div>
+      </div>
+    </div>
+    <div class="su_data-box">
+      <div class="su_min-investment">
+        <p class="su_purple su_wgt_regular su_margin_btm_6">Inv. Mínima</p>
+        <h4 class="su_margin_btm_6">{{formatAmount(publicGuarantee.minimum_investment)}}</h4>
+        <p class="su_purple_60 su_wgt_light">millones</p>
+      </div>
+      <div class="su_divisor-vertical su_purple_20_bg"></div> 
+      <div class="su_interest">
+        <p class="su_purple su_wgt_regular su_margin_btm_6">Interés</p>
+        <h4 class="su_margin_btm_6">{{ publicGuarantee.return_investment }}<span class="su_wgt_60 su_purple_light">%</span></h4>
+        <p class="su_purple_60 su_wgt_light">mensual</p>
+      </div>
+    </div>
+    <button @click="onInterestedUser" class="su_button su_purple_gradient">
+      <p class="su_wgt_bold su_no_margin">Te interesa?</p>
+      <img src="@/assets/img/icons/su_icon_forward.svg" alt="forward icon white">
+    </button>
+  </div>
+</div>
